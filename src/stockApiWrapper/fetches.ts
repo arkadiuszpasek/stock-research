@@ -5,3 +5,4 @@ const API_PARAM = `?apikey=${config.stockApiKey}`;
 
 export const createCompanyProfileUrl = (ticker: string) => `${BASE_URL}/v3/profile/${ticker}${API_PARAM}`
 export const createCompanyKeyMetricsUrl = (ticker: string) => `${BASE_URL}/v3/key-metrics-ttm/${ticker}${API_PARAM}`
+export const createCompanyRatingUrl = (ticker: string) => `${BASE_URL}/v3/rating/${ticker}${API_PARAM}`

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StockProfile } from '../../reducers/stockReducer';
+import { StockRating } from '../../reducers/stockReducer';
 import * as styles from '../../styles/vars';
 
 interface Props {
-  profile: StockProfile;
+  rating: StockRating;
 }
 
 const Container = styled.div`
@@ -26,39 +26,43 @@ const DataRow = styled.div`
   background-color: ${styles.SECOND_COLOR};
 `;
 
-const StockProfileComponent = ({ profile }: Props) => {
+const StockRatingContainer = ({ rating }: Props) => {
   return (
     <Container>
       <DataRow>
-        <p>Ticker</p>
-        <p>{profile.symbol}</p>
+        <p>Rating</p>
+        <p>{rating.rating}</p>
       </DataRow>
       <DataRow>
-        <p>Name</p>
-        <p>{profile.companyName}</p>
+        <p>Rating score</p>
+        <p>{rating.ratingScore}</p>
       </DataRow>
       <DataRow>
-        <p>Describtion</p>
-        <p>{profile.description && profile.description.substr(0, 50) + '...'}</p>
+        <p>Rating DCF</p>
+        <p>{rating.ratingDetailsDCFScore}</p>
       </DataRow>
       <DataRow>
-        <p>Price</p>
-        <p>{profile.price}</p>
+        <p>Rating DE</p>
+        <p>{rating.ratingDetailsDEScore}</p>
       </DataRow>
       <DataRow>
-        <p>Market cap</p>
-        <p>{profile.mktCap}</p>
+        <p>Rating PB</p>
+        <p>{rating.ratingDetailsPBScore}</p>
       </DataRow>
       <DataRow>
-        <p>DCF</p>
-        <p>{profile.dcf}</p>
+        <p>Rating PE</p>
+        <p>{rating.ratingDetailsPEScore}</p>
       </DataRow>
       <DataRow>
-        <p>DCF difference</p>
-        <p>{profile.dcfDiff}</p>
+        <p>Rating ROA</p>
+        <p>{rating.ratingDetailsROAScore}</p>
+      </DataRow>
+      <DataRow>
+        <p>Rating ROE</p>
+        <p>{rating.ratingDetailsROEScore}</p>
       </DataRow>
     </Container>
   );
 };
 
-export default StockProfileComponent;
+export default StockRatingContainer;

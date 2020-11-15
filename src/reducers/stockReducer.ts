@@ -1,6 +1,4 @@
-import { ActionType, FetchKeyMetricsAction, FetchProfileAction } from '../actions';
-
-export enum StockDataType { PROFILE, KEY_METRICS }
+import { ActionType, FetchKeyMetricsAction, FetchProfileAction, FetchRatingAction } from '../actions';
 
 export interface StockProfile {
   "symbol" : string;
@@ -39,22 +37,45 @@ export interface StockKeyMetrics {
   "payoutRatioTTM" : number,
 }
 
+export interface StockRating {
+  "date" : string;
+  "rating" : string;
+  "ratingScore" : number;
+  "ratingRecommendation" : string;
+  "ratingDetailsDCFScore" : number;
+  "ratingDetailsDCFRecommendation" : string;
+  "ratingDetailsROEScore" : number;
+  "ratingDetailsROERecommendation" : string;
+  "ratingDetailsROAScore" : number;
+  "ratingDetailsROARecommendation" : string;
+  "ratingDetailsDEScore" : number;
+  "ratingDetailsDERecommendation" : string;
+  "ratingDetailsPEScore" : number;
+  "ratingDetailsPERecommendation" : string;
+  "ratingDetailsPBScore" : number;
+  "ratingDetailsPBRecommendation" : string;
+}
+
 export interface StockData {
   metrics?: StockKeyMetrics;
   profile?: StockProfile;
+  rating?: StockRating;
 };
 
 const INITIAL_STATE: StockData = {
   metrics: undefined,
-  profile: undefined
+  profile: undefined,
+  rating: undefined,
 }
 
-export default (state = INITIAL_STATE, action: FetchKeyMetricsAction | FetchProfileAction): StockData => {
+export default (state = INITIAL_STATE, action: FetchKeyMetricsAction | FetchProfileAction | FetchRatingAction): StockData => {
   switch (action.type) {
     case ActionType.FETCH_KEY_METRICS:
       return { ...state, metrics: action.payload };
     case ActionType.FETCH_PROFILE:
       return { ...state, profile: action.payload };
+    case ActionType.FETCH_RATING:
+      return { ...state, rating: action.payload };
     default:
       return state;
   }

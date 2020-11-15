@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { updateInput, fetchKeyMetrics, fetchProfile } from '../actions';
+import { updateInput, fetchKeyMetrics, fetchProfile, fetchRating } from '../actions';
 import * as styles from '../styles/vars';
 import { State } from '../types';
 
@@ -34,16 +34,18 @@ interface Props {
   updateInput: (input: string) => void;
   fetchKeyMetrics: (ticker: string) => void;
   fetchProfile: (ticker: string) => void;
+  fetchRating: (ticker: string) => void;
 }
 
-const Input = ({ input, updateInput, fetchKeyMetrics, fetchProfile }: Props) => {
+const Input = ({ input, updateInput, fetchKeyMetrics, fetchProfile, fetchRating }: Props) => {
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateInput(e.target.value.toUpperCase());
   };
 
   const onButtonClick = () => {
-    fetchKeyMetrics(input);
     fetchProfile(input);
+    setTimeout(() => fetchKeyMetrics(input), 1000);
+    setTimeout(() => fetchRating(input), 2000);
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -72,7 +74,7 @@ const mapStateToProps = (state: State) => ({
 });
 
 const mapDispatchToProps = {
-  updateInput, fetchKeyMetrics, fetchProfile
+  updateInput, fetchKeyMetrics, fetchProfile, fetchRating
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Input);
