@@ -43,5 +43,25 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script id='closer-widget-script'>
+      (function (c, l, o, s, e, r) {
+          c.closer = c.closer || { q: [] };
+          ["init", "identify", "openWidget"].forEach(function (m) {
+              c.closer[m] = function () {
+                  this.q.push({ method: m, args: arguments });
+                  }
+              });
+          c.closer["scriptUrl"] = s;
+          e = l.createElement(o);
+          e.async = 1;
+          e.src = s;
+          r = l.getElementsByTagName(o)[0];
+          r.parentNode.insertBefore(e, r);
+      })(window, document, "script", "https://widget.stage.closer.app/widget.js");
+  
+      closer.init({
+          orgId: "d90482fe-17bf-48d5-aa75-dc8752b49023",
+      })
+  </script>
   </body>
 </html>
